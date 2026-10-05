@@ -1,0 +1,6 @@
+if SHIELD_BAD_WINGS
+
+config ZMK_KEYBOARD_NAME
+    default "bad_wings"
+
+endif # SHIELD_BAD_WINGS
