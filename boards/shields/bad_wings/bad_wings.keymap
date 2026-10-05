@@ -83,65 +83,6 @@
     };
 
     behaviors {
-        qesc: tap_dance_qesc {
-            compatible = "zmk,behavior-tap-dance";
-            label = "tap_dance_qesc";
-            #binding-cells = <0>;
-            tapping-term-ms = <300>;
-            bindings = <&kp Q>, <&kp ESC>;
-        };
-
-        bkt: tap_dance_bracket {
-            compatible = "zmk,behavior-tap-dance";
-            label = "tap_dance_bracket";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp LBKT>, <&kp RBKT>;
-        };
-
-        brc: tap_dance_brace {
-            compatible = "zmk,behavior-tap-dance";
-            label = "tap_dance_braces";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp LBRC>, <&kp RBRC>;
-        };
-
-        par: tap_dance_paren {
-            compatible = "zmk,behavior-tap-dance";
-            label = "tap_dance_paren";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp LPAR>, <&kp RPAR>;
-        };
-
-        thn: tap_dance_then {
-            compatible = "zmk,behavior-tap-dance";
-            label = "tap_dance_then";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp LT>, <&kp GT>;
-        };
-
-        skq: sticky_quick {
-            compatible = "zmk,behavior-sticky-key";
-            label = "sticky_quick";
-            #binding-cells = <1>;
-            bindings = <&kp>;
-            release-after-ms = <200>;
-            quick-release;
-        };
-
-        hrm: homerow_mods {
-           compatible = "zmk,behavior-hold-tap";
-           label = "homerow_mods";
-           #binding-cells = <2>;
-           tapping-term-ms = <250>;
-           quick-tap-ms = <0>;
-           flavor = "tap-preferred";
-           bindings = <&kp>, <&kp>;
-
-        };
 
         shift_undo: shift_undo {
             compatible = "zmk,behavior-hold-tap";
@@ -149,28 +90,6 @@
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
             bindings = <&kp LSHFT>, <&kp LC(Z)>;
-        };
-        shift_ctrl_Z: shift_ctrl_Z {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <200>;
-            bindings = <&kp LSHFT>, <&kp LC(Z)>;
-        };
-        shift_CTRL_Z: shift_CTRL_Z {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <200>;
-            bindings = <&kp LSHFT>, <&kp LC(Z)>;
-        };
-    };
-
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-        tri_layer {
-            if-layers = <SYMBOL NUMBER>;
-            then-layer = <NAVIGATION>;
         };
     };
 
@@ -190,7 +109,7 @@
             bindings = <
                 &kp N1       &kp N2       &kp N3       &kp N4       &kp N5       &kp N6       &kp N7       &kp N8       &kp N9       &kp N0
                 &kp LC(A)      &kp LC(S)      &kp SEMI      &kp LBKT      &kp N5      &kp BSLH      &kp COLON      &kp MINUS      &kp EQUAL      &tog 1
-                &shift_CTRL_Z       &kp LC(X)       &kp LC(C)       &kp LC(V)       &none       &kp PLUS       &kp GRAVE       &kp COMMA       &kp DOT      &mt RSHFT FSLH
+                &shift_undo       &kp LC(X)       &kp LC(C)       &kp LC(V)       &none       &kp PLUS       &kp GRAVE       &kp COMMA       &kp DOT      &mt RSHFT FSLH
                                         &trans      &trans      &trans      &trans      &trans      &trans
             >;
         };
