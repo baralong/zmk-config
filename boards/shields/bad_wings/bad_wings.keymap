@@ -89,7 +89,7 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
-            bindings = <&kp LSHFT>, <&kp LC(Z)>;
+            bindings = <&kp LSHFT &kp LC(Z)>;
         };
     };
 
