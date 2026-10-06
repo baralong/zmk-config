@@ -116,7 +116,7 @@
                 &lt 5 Q    &kp W           &kp E       &kp R       &kp T        &kp Y     &kp U            &kp I     &kp O    &kp P
                 &kp A   &kp S           &kp D       &lt 3 F       &kp G        &kp H     &mt LGUI J            &mt RCTRL K     &mt RALT L    &kp SQT
                 &mt LSHFT Z   &kp X     &kp C       &kp V       &kp B        &kp N     &kp M            &kp COMMA &kp DOT  &mt RSHFT FSLH
-                                        &lt 1 TAB   &mt LCTRL DEL  &mt LGUI ENTER  &lt 4 SPACE &kp BSPC  &lt 2 ESC
+                                        &lt 1 TAB   &mt LCTRL DEL  &mt LGUI ENTER  &lt 4 SPACE &lt 2 BSPC  &lt 1 ESC
             >;
         };
 
