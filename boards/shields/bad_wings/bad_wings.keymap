@@ -113,7 +113,7 @@
 
         ALPHA_layer {
             bindings = <
-                &kp Q    &kp W           &kp E       &kp R       &kp T        &kp Y     &kp U            &kp I     &kp O    &kp P
+                &lt 5 Q    &kp W           &kp E       &kp R       &kp T        &kp Y     &kp U            &kp I     &kp O    &kp P
                 &kp A   &kp S           &kp D       &lt 3 F       &kp G        &kp H     &mt LGUI J            &mt RCTRL K     &mt RALT L    &kp SQT
                 &mt LSHFT Z   &kp X     &kp C       &kp V       &kp B        &kp N     &kp M            &kp COMMA &kp DOT  &mt RSHFT FSLH
                                         &lt 1 TAB   &mt LCTRL DEL  &mt LGUI ENTER  &lt 4 SPACE &kp BSPC  &lt 1 ESC
@@ -153,6 +153,14 @@
                 &kp F11 &kp F12 &none &kp C_BRI_DN &kp C_BRI_UP &none &kp RGUI &kp RCTRL &kp RALT &none
                 &kp LSHIFT &kp C_MUTE &kp C_MUTE &kp C_VOL_DN &kp C_VOL_UP &none &none &none &none &kp RSHIFT
                 &none &kp LCTRL &kp LGUI &none &kp RALT &kp ESC
+            >;
+        };
+        Bluetooth {
+            bindings = <
+                &none &none &none &none &none &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
+                &none &none &none &none &none &none &none &none &none &none
+                &none &none &none &none &none &none &none &none &none &none
+                &none &none &tog 5 &out OUT_TOG &bt BT_CLR &none
             >;
         };
     };
