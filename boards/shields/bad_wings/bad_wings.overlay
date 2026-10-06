@@ -3,6 +3,7 @@
 // instructions.
 
 #include <dt-bindings/zmk/matrix_transform.h>
+#include "bad_wings-layouts.dtsi"
 
 &xiao_serial { status = "disabled"; };
 
@@ -24,7 +25,7 @@
 / {
     chosen {
         zmk,kscan = &kscan0;
-        zmk,matrix_transform = &default_transform;
+        zmk,physical-layout = &physical_layout0;
     };
 
     default_transform: keymap_transform_0 {
