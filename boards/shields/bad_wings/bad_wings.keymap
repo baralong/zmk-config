@@ -22,6 +22,16 @@
 };
 
 / {
+    behaviors {
+        b_tap_hold: b_tap_hold {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&kp>, <&kp>;
+        };
+    };
+
     combos {
         compatible = "zmk,combos";
         combo_bootloader {
@@ -34,41 +44,57 @@
             timeout-ms = <50>;
             key-positions = <8 9>;
             bindings = <&kp MINUS>;
+            require-prior-idle-ms = <125>;
+            layers = <0>;
         };
         Grave {
             timeout-ms = <50>;
             key-positions = <0 1>;
             bindings = <&kp GRAVE>;
+            require-prior-idle-ms = <125>;
+            layers = <0>;
         };
         semi {
             timeout-ms = <50>;
             key-positions = <9 19>;
             bindings = <&kp SEMI>;
+            require-prior-idle-ms = <125>;
+            layers = <0>;
         };
         LParen {
             timeout-ms = <50>;
             key-positions = <3 4>;
             bindings = <&kp LPAR>;
+            require-prior-idle-ms = <125>;
+            layers = <0>;
         };
         RParen {
             timeout-ms = <50>;
             key-positions = <5 6>;
             bindings = <&kp RPAR>;
+            require-prior-idle-ms = <125>;
+            layers = <0>;
         };
         LBkt {
             timeout-ms = <50>;
             key-positions = <13 14>;
             bindings = <&kp LBKT>;
+            require-prior-idle-ms = <125>;
+            layers = <0>;
         };
         RBkt {
             timeout-ms = <50>;
             key-positions = <15 16>;
             bindings = <&kp RBKT>;
+            require-prior-idle-ms = <125>;
+            layers = <0>;
         };
         at {
             timeout-ms = <50>;
             key-positions = <1 2>;
             bindings = <&kp AT>;
+            require-prior-idle-ms = <125>;
+            layers = <0>;
         };
         CapsWord {
             timeout-ms = <50>;
@@ -98,7 +124,7 @@
             bindings = <
                 &kp N1       &kp N2       &kp N3       &kp N4       &kp N5       &kp N6       &kp N7       &kp N8       &kp N9       &kp N0
                 &kp LC(A)      &kp LC(S)      &kp SEMI      &kp LBKT      &kp N5      &kp BSLH      &kp COLON      &kp MINUS      &kp EQUAL      &tog 1
-                &kp LC(Z)       &kp LC(X)       &kp LC(C)       &kp LC(V)       &none       &kp PLUS       &kp GRAVE       &kp COMMA       &kp DOT      &mt RSHFT FSLH
+                &b_tap_hold LSHIFT LC(Z)       &kp LC(X)       &kp LC(C)       &kp LC(V)       &none       &kp PLUS       &kp GRAVE       &kp COMMA       &kp DOT      &mt RSHFT FSLH
                                         &trans      &trans      &trans      &trans      &trans      &trans
             >;
         };
