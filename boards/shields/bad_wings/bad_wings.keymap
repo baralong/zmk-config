@@ -30,6 +30,13 @@
             tapping-term-ms = <200>;
             bindings = <&kp>, <&kp>;
         };
+        b_lt: b_lt {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&mo>, <&kp>; /* Change first parameter to &mo */
+        };
     };
 
     combos {
@@ -116,7 +123,7 @@
                 &lt 5 Q    &kp W           &kp E       &kp R       &kp T        &kp Y     &kp U            &kp I     &kp O    &kp P
                 &kp A   &kp S           &kp D       &lt 3 F       &kp G        &kp H     &mt LGUI J            &mt RCTRL K     &mt RALT L    &kp SQT
                 &mt LSHFT Z   &kp X     &kp C       &kp V       &kp B        &kp N     &kp M            &kp COMMA &kp DOT  &mt RSHFT FSLH
-                                        &lt 1 TAB   &mt LCTRL DEL  &mt LGUI ENTER  &lt 4 SPACE &lt 2 BSPC  &lt 1 ESC
+                                        &b_lt 1 TAB   &mt LCTRL DEL  &mt LGUI ENTER  &lt 4 SPACE &lt 2 BSPC  &lt 1 ESC
             >;
         };
 
