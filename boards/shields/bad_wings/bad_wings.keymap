@@ -22,6 +22,14 @@
 };
 
 / {
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        cond_0_6_1 {
+            if-layers = <0 2>;
+            then-layer = <1>;
+        };
+    };
+
     behaviors {
         b_tap_hold: b_tap_hold {
             compatible = "zmk,behavior-hold-tap";
@@ -45,7 +53,7 @@
             timeout-ms = <50>;
             key-positions = <0 9>;
             bindings = <&bootloader>;
-
+            layers = <0>;
         };
         minus {
             timeout-ms = <50>;
@@ -111,46 +119,55 @@
         stickySym {
             timeout-ms = <50>;
             key-positions = <30 35>;
-            bindings = <&sl 2>;
+            bindings = <&sl 3>;
         };
     };
 
     keymap {
         compatible = "zmk,keymap";
 
-        ALPHA_layer {
+        Base {
             bindings = <
-                &lt 5 Q    &kp W           &kp E       &kp R       &kp T        &kp Y     &kp U            &kp I     &kp O    &kp P
-                &kp A   &kp S           &kp D       &lt 3 F       &kp G        &kp H     &mt LGUI J            &mt RCTRL K     &mt RALT L    &kp SQT
-                &mt LSHFT Z   &kp X     &kp C       &kp V       &kp B        &kp N     &kp M            &kp COMMA &kp DOT  &mt RSHFT FSLH
-                                        &b_lt 1 TAB   &mt LCTRL DEL  &mt LGUI ENTER  &lt 4 SPACE &lt 2 BSPC  &lt 1 ESC
+                &lt 6 Q    &kp W           &kp E       &kp R       &kp T        &kp Y     &kp U            &kp I     &kp O    &kp P
+                &mt LSHFT A   &mt LALT S           &mt LALT D       &mt LGUI F       &kp G        &kp H     &mt LGUI J            &mt RCTRL K     &mt RALT L    &mt RSHFT SQT
+                &kp Z   &kp X     &kp C       &kp V       &kp B        &kp N     &kp M            &kp COMMA &kp DOT  &kp FSLH
+                                        &b_lt 1 TAB   &kp DEL  &lt 4 ENTER  &lt 5 SPACE &lt 3 BSPC  &lt 1 ESC
             >;
         };
 
-        NUMBER_layer {
+        Numbers {
             bindings = <
                 &kp N1       &kp N2       &kp N3       &kp N4       &kp N5       &kp N6       &kp N7       &kp N8       &kp N9       &kp N0
-                &kp LC(A)      &kp LC(S)      &kp SEMI      &kp LBKT      &kp N5      &kp BSLH      &kp COLON      &kp MINUS      &kp EQUAL      &tog 1
-                &b_tap_hold LSHIFT LC(Z)       &kp LC(X)       &kp LC(C)       &kp LC(V)       &none       &kp PLUS       &kp GRAVE       &kp COMMA       &kp DOT      &mt RSHFT FSLH
+                &b_tap_hold LSHIFT LC(A)      &kp LC(S)      &kp SEMI      &kp LBKT      &kp RBKT      &kp BSLH      &kp COLON      &kp MINUS      &kp EQUAL      &mt RSHFT SEMI
+                &kp Z       &kp LC(X)       &kp LC(C)       &kp LC(V)       &to 2       &kp PLUS       &kp GRAVE       &kp COMMA       &kp DOT      &kp FSLH
                                         &trans      &trans      &trans      &trans      &trans      &trans
             >;
         };
 
-        SYMBOL_layer {
+        NumberLock {
+            bindings = <
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &to 0 &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans
+            >;
+        };
+
+        Symbols {
             bindings = <
                 &kp EXCL    &kp AT      &kp HASH    &kp DLLR    &kp PRCNT   &kp CARET   &kp AMPS    &kp STAR    &kp LPAR    &kp RPAR
                 &kp GRAVE   &kp TILDE   &kp MINUS   &kp PLUS   &kp LBKT       &kp RBKT        &kp BSLH        &kp SEMI        &kp COLON        &kp BSLH
                 &kp LSHIFT       &none       &none    &none   &kp LBRC       &kp RBRC       &kp EQUAL       &kp COMMA   &kp DOT     &kp RSHIFT
-                                        &trans      &tog 2      &none      &none      &tog 2      &trans
+                                        &trans      &tog 3      &none      &none      &tog 3      &trans
             >;
         };
 
-        NAVIGATION_layer {
+        Navigation {
             bindings = <
                 &none           &none          &none    &none    &none      &kp PG_UP       &kp HOME    &kp UP      &kp END     &kp BSPC
-                &none         &none           &none    &none    &none           &kp PG_DN       &kp LEFT    &kp DOWN    &kp RIGHT   &kp RET
-                &kp LSHIFT           &kp LCTRL           &none    &none    &none    &kp K_APP       &kp LC(X)  &kp LC(V)    &kp LC(V)  &kp RSHIFT
-                                                &trans          &kp DEL          &kp LCTRL          &kp RALT      &kp LC(LS(L))      &trans
+                &kp LSHIFT         &kp LCTRL           &kp RALT    &kp LCMD    &none           &kp PG_DN       &kp LEFT    &kp DOWN    &kp RIGHT   &kp RET
+                &none           &none           &none    &none    &none    &kp K_APP       &kp LC(X)  &kp LC(V)    &kp LC(V)  &kp RSHIFT
+                                                &trans          &trans          &none          &none      &trans      &trans
             >;
         };
 
@@ -162,12 +179,13 @@
                 &none &kp LCTRL &kp LGUI &none &kp RALT &kp ESC
             >;
         };
+
         Bluetooth {
             bindings = <
                 &none &none &none &none &none &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
                 &none &none &none &none &none &none &none &none &none &none
                 &none &none &none &none &none &none &none &none &none &none
-                &none &none &tog 5 &out OUT_TOG &bt BT_CLR &none
+                &none &none &soft_off &out OUT_TOG &bt BT_CLR &none
             >;
         };
     };
