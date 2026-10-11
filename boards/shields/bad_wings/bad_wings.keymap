@@ -131,14 +131,14 @@
                 &lt 6 Q    &kp W           &kp E       &kp R       &kp T        &kp Y     &kp U            &kp I     &kp O    &kp P
                 &mt LSHFT A   &mt LALT S           &mt LCTRL D       &mt LGUI F       &kp G        &kp H     &mt LGUI J            &mt RCTRL K     &mt RALT L    &mt RSHFT SQT
                 &kp Z   &kp X     &kp C       &kp V       &kp B        &kp N     &kp M            &kp COMMA &kp DOT  &kp FSLH
-                                        &b_lt 1 TAB   &kp DEL  &lt 4 ENTER  &lt 5 SPACE &lt 3 BSPC  &lt 1 ESC
+                                        &lt 1 TAB   &kp DEL  &lt 4 ENTER  &lt 5 SPACE &lt 3 BSPC  &lt 1 ESC
             >;
         };
 
         Numbers {
             bindings = <
                 &kp N1       &kp N2       &kp N3       &kp N4       &kp N5       &kp N6       &kp N7       &kp N8       &kp N9       &kp N0
-                &b_tap_hold LSHIFT LC(A)      &kp LC(S)      &kp SEMI      &kp LBKT      &kp RBKT      &kp BSLH      &kp COLON      &kp MINUS      &kp EQUAL      &mt RSHFT SEMI
+                &b_tap_hold LSHFT LC(A)      &kp LC(S)      &kp SEMI      &kp LBKT      &kp RBKT      &kp BSLH      &kp COLON      &kp MINUS      &kp EQUAL      &mt RSHFT SEMI
                 &kp Z       &kp LC(X)       &kp LC(C)       &kp LC(V)       &to 2       &kp PLUS       &kp GRAVE       &kp COMMA       &kp DOT      &kp FSLH
                                         &trans      &trans      &trans      &trans      &trans      &trans
             >;
@@ -156,9 +156,9 @@
         Symbols {
             bindings = <
                 &kp EXCL    &kp AT      &kp HASH    &kp DLLR    &kp PRCNT   &kp CARET   &kp AMPS    &kp STAR    &kp LPAR    &kp RPAR
-                &kp GRAVE   &kp TILDE   &kp MINUS   &kp PLUS   &kp LBKT       &kp RBKT        &kp BSLH        &kp SEMI        &kp COLON        &kp BSLH
+                &mt LSHFT GRAVE   &kp TILDE   &kp MINUS   &kp PLUS   &kp LBKT       &kp RBKT        &kp BSLH        &kp SEMI        &kp COLON        &mt RSHFT BSLH
                 &kp LSHIFT       &none       &none    &none   &kp LBRC       &kp RBRC       &kp EQUAL       &kp COMMA   &kp DOT     &kp RSHIFT
-                                        &trans      &tog 3      &none      &none      &tog 3      &trans
+                                        &trans      &trans      &none      &none      &trans      &trans
             >;
         };
 
