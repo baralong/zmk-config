@@ -20,8 +20,7 @@
     tapping_term_ms = <150>;
     flavor = "hold-preferred";
 };
-
-/ {
+/*
     conditional_layers {
         compatible = "zmk,conditional-layers";
         cond_numbers {
@@ -33,6 +32,9 @@
             then-layer = <1>;
         };
     };
+    */
+/ {
+
 
     behaviors {
         b_tap_hold: b_tap_hold {
@@ -138,7 +140,7 @@
                 &lt 7 Q    &kp W           &kp E       &kp R       &kp T        &kp Y     &kp U            &kp I     &kp O    &kp P
                 &hm LSHFT A   &hm LALT S           &hm LCTRL D       &hm LGUI F       &kp G        &kp H     &hm LGUI J            &hm RCTRL K     &hm RALT L    &hm RSHFT SQT
                 &lt 8 Z   &kp X     &kp C       &kp V       &kp B        &kp N     &kp M            &kp COMMA &kp DOT  &lt 8 FSLH
-                                        &lt 2 TAB   &lt 4 DEL  &lt 5 ENTER  &lt 6 SPACE &lt 4 BSPC  &lt 2 ESC
+                                        &lt 1 TAB   &lt 4 DEL  &lt 5 ENTER  &lt 6 SPACE &lt 4 BSPC  &lt 1 ESC
             >;
         };
 
