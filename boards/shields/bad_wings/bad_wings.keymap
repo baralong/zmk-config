@@ -25,7 +25,7 @@
     conditional_layers {
         compatible = "zmk,conditional-layers";
         cond_numbers {
-            if-layers = <0 3>;
+            if-layers = <0 2>;
             then-layer = <1>;
         };
         cond_numbers_lock {
