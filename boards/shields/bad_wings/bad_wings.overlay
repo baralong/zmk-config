@@ -9,7 +9,9 @@
 
 &xiao_spi {
     status = "okay";
-    cs-gpios = <&xiao_d 6 GPIO_ACTIVE_LOW>;
+    cs-gpios = <&xiao_d 6 GPIO_ACTIVE_LOW>   // 74HC595 (GP0 in QMK)
+              , <&xiao_d 7 GPIO_ACTIVE_LOW>;  // Cirque (GP1 in QMK)
+
     shifter: 595@0 {
         compatible = "zmk,gpio-595";
         status = "okay";
@@ -20,9 +22,28 @@
         #gpio-cells = <2>;
         ngpios = <8>;
     };
+
+    // Cirque Pinnacle trackpad (35mm) on the shared SPI bus, polled (no DR pin)
+    trackpad: cirque_pinnacle@1 {
+        compatible = "cirque,pinnacle";
+        reg = <1>;
+        status = "okay";
+        spi-max-frequency = <1000000>;
+        data-mode = "relative";
+        sensitivity = "4x";
+        primary-tap-enable;
+        idle-packets-count = <0>;
+        swap-xy;
+    };
 };
 
 / {
+    trackpad_listener: trackpad_listener {
+        compatible = "zmk,input-listener";
+        status = "okay";
+        device = <&trackpad>;
+    };
+
     chosen {
         zmk,kscan = &kscan0;
         zmk,physical-layout = &physical_layout0;
