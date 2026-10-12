@@ -4,6 +4,7 @@
 
 #include <dt-bindings/zmk/matrix_transform.h>
 #include "bad_wings-layouts.dtsi"
+#include <input/processors.dtsi>
 
 &xiao_serial { status = "disabled"; };
 
@@ -42,6 +43,14 @@
         compatible = "zmk,input-listener";
         status = "okay";
         device = <&trackpad>;
+        // auto-activate the Mouse layer (9) on trackpad use
+        input-processors = <&zip_temp_layer 9 600>;
+
+        // Scroll layer (10): trackpad movement scrolls
+        scroll {
+            layers = <10>;
+            input-processors = <&zip_xy_to_scroll_mapper>;
+        };
     };
 
     chosen {
