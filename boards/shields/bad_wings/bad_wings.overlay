@@ -4,12 +4,16 @@
 
 #include <dt-bindings/zmk/matrix_transform.h>
 #include "bad_wings-layouts.dtsi"
+#include <input/processors.dtsi>
+#include <dt-bindings/zmk/input_transform.h>
 
 &xiao_serial { status = "disabled"; };
 
 &xiao_spi {
     status = "okay";
-    cs-gpios = <&xiao_d 6 GPIO_ACTIVE_LOW>;
+    cs-gpios = <&xiao_d 6 GPIO_ACTIVE_LOW>   // 74HC595 (GP0 in QMK)
+              , <&xiao_d 7 GPIO_ACTIVE_LOW>;  // Cirque (GP1 in QMK)
+
     shifter: 595@0 {
         compatible = "zmk,gpio-595";
         status = "okay";
@@ -20,9 +24,37 @@
         #gpio-cells = <2>;
         ngpios = <8>;
     };
+
+    // Cirque Pinnacle trackpad (35mm) on the shared SPI bus with DR on D5
+    trackpad: cirque_pinnacle@1 {
+        compatible = "cirque,pinnacle";
+        reg = <1>;
+        status = "okay";
+        spi-max-frequency = <1000000>;
+        data-ready-gpios = <&xiao_d 5 GPIO_ACTIVE_HIGH>;
+        data-mode = "relative";
+        sensitivity = "4x";
+        primary-tap-enable;
+        idle-packets-count = <0>;
+        swap-xy;
+    };
 };
 
 / {
+    trackpad_listener: trackpad_listener {
+        compatible = "zmk,input-listener";
+        status = "okay";
+        device = <&trackpad>;
+        // auto-activate the Mouse layer (9) on trackpad use
+        input-processors = <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>, <&zip_temp_layer 9 600>;
+
+        // Scroll layer (10): trackpad movement scrolls
+        scroll {
+            layers = <10>;
+            input-processors = <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>, <&zip_xy_to_scroll_mapper>, <&zip_scroll_scaler 1 4>, <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
+        };
+    };
+
     chosen {
         zmk,kscan = &kscan0;
         zmk,physical-layout = &physical_layout0;
