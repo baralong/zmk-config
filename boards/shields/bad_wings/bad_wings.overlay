@@ -24,12 +24,13 @@
         ngpios = <8>;
     };
 
-    // Cirque Pinnacle trackpad (35mm) on the shared SPI bus, polled (no DR pin)
+    // Cirque Pinnacle trackpad (35mm) on the shared SPI bus with DR on D5
     trackpad: cirque_pinnacle@1 {
         compatible = "cirque,pinnacle";
         reg = <1>;
         status = "okay";
         spi-max-frequency = <1000000>;
+        data-ready-gpios = <&xiao_d 5 GPIO_ACTIVE_HIGH>;
         data-mode = "relative";
         sensitivity = "4x";
         primary-tap-enable;
