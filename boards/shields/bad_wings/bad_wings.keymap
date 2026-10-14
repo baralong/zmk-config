@@ -29,10 +29,10 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred";
-            tapping-term-ms = <200>;
+            tapping-term-ms = <300>;
             quick-tap-ms = <175>;
             require-prior-idle-ms = <150>;
-           bindings = <&kp>, <&kp>;
+            bindings = <&kp>, <&kp>;
         };
         hm: home_row_mods {
             compatible = "zmk,behavior-hold-tap";
@@ -130,6 +130,18 @@
         };
     };
 
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        number_hold {
+            if-layers = <2>;
+            then-layer = <1>;
+        };
+        number_lock {
+            if-layers = <3>;
+            then-layer = <1>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -138,7 +150,7 @@
                 &blt 7 Q    &kp W           &kp E       &kp R       &kp T        &kp Y     &kp U            &kp I     &kp O    &kp P
                 &hm LSHFT A   &hm LGUI S           &hm LALT D       &hm LCTRL F       &kp G        &kp H     &hm RCTRL J            &hm RALT K     &hm RGUI L    &hm RSHFT SQT
                 &blt 8 Z   &kp X     &kp C       &kp V       &kp B        &kp N     &kp M            &kp COMMA &kp DOT  &lt 8 FSLH
-                                        &blt 1 TAB   &blt 9 DEL  &blt 5 ENTER  &lt 6 SPACE &blt 4 BSPC  &blt 1 ESC
+                                        &blt 2 TAB   &blt 9 DEL  &blt 5 ENTER  &lt 6 SPACE &blt 4 BSPC  &blt 2 ESC
             >;
         };
 
@@ -146,7 +158,7 @@
             bindings = <
                 &kp N1       &kp N2       &kp N3       &kp N4       &kp N5       &kp N6       &kp N7       &kp N8       &kp N9       &kp N0
                 &b_tap_hold LSHFT LC(A)      &kp LC(S)      &kp SEMI      &kp LBKT      &kp RBKT      &kp BSLH      &kp COLON      &kp MINUS      &kp EQUAL      &mt RSHFT SEMI
-                &kp Z       &kp LC(X)       &kp LC(C)       &kp LC(V)       &tog 1       &kp PLUS       &kp GRAVE       &kp COMMA       &kp DOT      &kp FSLH
+                &kp Z       &kp LC(X)       &kp LC(C)       &kp LC(V)       &tog 3       &kp PLUS       &kp GRAVE       &kp COMMA       &kp DOT      &kp FSLH
                                         &trans      &trans      &trans      &trans      &trans      &trans
             >;
         };
@@ -164,7 +176,7 @@
             bindings = <
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &to 0 &trans &trans &trans &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans
             >;
         };
