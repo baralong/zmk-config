@@ -1,3 +1,4 @@
 config ZMK_CONFIG_REBOOT_TO_BOOTLOADER_AFTER_RESET
     bool "Reboot into the bootloader after settings have been reset"
     depends on ZMK_SETTINGS_RESET_ON_START
+    imply RETENTION_BOOT_MODE
