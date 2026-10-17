@@ -24,3 +24,4 @@ include:
     snippet: studio-rpc-usb-uart # <-- required for ZMK Studio support
   - board: xiao_ble//zmk
     shield: settings_reset
+    cmake-args: -DCONFIG_ZMK_CONFIG_REBOOT_TO_BOOTLOADER_AFTER_RESET=y
