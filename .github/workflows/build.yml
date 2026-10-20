@@ -4,3 +4,34 @@ on: [push, pull_request, workflow_dispatch]
 jobs:
   build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+
+  commit-artifacts:
+    needs: build
+    if: success() && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: firmware
+          path: artifacts
+      - name: Extract any zip files
+        run: |
+          find artifacts -name '*.zip' | while read -r z; do
+            unzip -o "$z" -d "$(dirname "$z")" && rm "$z"
+          done
+      - name: Commit artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add artifacts
+          if git diff --cached --quiet; then
+            echo "No artifact changes"
+          else
+            git commit -m "Add firmware artifacts from build ${{ github.run_number }}"
+            git push origin HEAD:${{ github.head_ref || github.ref_name }}
+          fi
