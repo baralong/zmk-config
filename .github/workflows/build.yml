@@ -19,6 +19,11 @@ jobs:
         with:
           name: firmware
           path: artifacts
+      - name: Extract any zip files
+        run: |
+          find artifacts -name '*.zip' | while read -r z; do
+            unzip -o "$z" -d "$(dirname "$z")" && rm "$z"
+          done
       - name: Commit artifacts
         run: |
           git config user.name "github-actions[bot]"
