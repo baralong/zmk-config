@@ -45,12 +45,12 @@
         compatible = "zmk,input-listener";
         status = "okay";
         device = <&trackpad>;
-        // auto-activate the Mouse layer (9) on trackpad use
-        input-processors = <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>, <&zip_temp_layer 9 600>;
+        // auto-activate the Mouse layer (6) on trackpad use
+        input-processors = <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>, <&zip_temp_layer 6 600>;
 
-        // Scroll layer (10): trackpad movement scrolls
+        // Scroll layer (7): trackpad movement scrolls
         scroll {
-            layers = <10>;
+            layers = <7>;
             input-processors = <&zip_xy_transform INPUT_TRANSFORM_X_INVERT>, <&zip_xy_to_scroll_mapper>, <&zip_scroll_scaler 1 4>, <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
         };
     };

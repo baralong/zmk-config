@@ -37,19 +37,19 @@
         hm: home_row_mods {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "balanced";
+            flavor = "tap-preferred";
             tapping-term-ms = <200>;
             quick-tap-ms = <175>;
-            require-prior-idle-ms = <150>;
+            require-prior-idle-ms = <200>;
             bindings = <&kp>, <&kp>;
         };
         blt: better_layer_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "balanced";
+            flavor = "tap-preferred";
             tapping-term-ms = <200>;
             quick-tap-ms = <175>;
-            require-prior-idle-ms = <150>;
+            require-prior-idle-ms = <200>;
             bindings = <&mo>, <&kp>;
         };
     };
@@ -57,88 +57,82 @@
     combos {
         compatible = "zmk,combos";
         combo_bootloader {
-            timeout-ms = <50>;
+            timeout-ms = <30>;
             key-positions = <0 9>;
             bindings = <&bootloader>;
             layers = <0>;
+            require-prior-idle-ms = <200>;
         };
         minus {
-            timeout-ms = <50>;
+            timeout-ms = <30>;
             key-positions = <8 9>;
             bindings = <&kp MINUS>;
-            require-prior-idle-ms = <125>;
+            require-prior-idle-ms = <175>;
             layers = <0>;
         };
         Grave {
-            timeout-ms = <50>;
+            timeout-ms = <30>;
             key-positions = <0 1>;
             bindings = <&kp GRAVE>;
-            require-prior-idle-ms = <125>;
+            require-prior-idle-ms = <175>;
             layers = <0>;
         };
         semi {
-            timeout-ms = <50>;
+            timeout-ms = <30>;
             key-positions = <9 19>;
             bindings = <&kp SEMI>;
-            require-prior-idle-ms = <125>;
+            require-prior-idle-ms = <175>;
             layers = <0>;
         };
         LParen {
-            timeout-ms = <50>;
+            timeout-ms = <30>;
             key-positions = <3 4>;
             bindings = <&kp LPAR>;
-            require-prior-idle-ms = <125>;
+            require-prior-idle-ms = <175>;
             layers = <0>;
         };
         RParen {
-            timeout-ms = <50>;
+            timeout-ms = <30>;
             key-positions = <5 6>;
             bindings = <&kp RPAR>;
-            require-prior-idle-ms = <125>;
+            require-prior-idle-ms = <175>;
             layers = <0>;
         };
         LBkt {
-            timeout-ms = <50>;
+            timeout-ms = <30>;
             key-positions = <13 14>;
             bindings = <&kp LBKT>;
-            require-prior-idle-ms = <125>;
+            require-prior-idle-ms = <175>;
             layers = <0>;
         };
         RBkt {
-            timeout-ms = <50>;
+            timeout-ms = <30>;
             key-positions = <15 16>;
             bindings = <&kp RBKT>;
-            require-prior-idle-ms = <125>;
+            require-prior-idle-ms = <175>;
             layers = <0>;
         };
         at {
-            timeout-ms = <50>;
+            timeout-ms = <30>;
             key-positions = <1 2>;
             bindings = <&kp AT>;
-            require-prior-idle-ms = <125>;
+            require-prior-idle-ms = <175>;
             layers = <0>;
         };
         CapsWord {
-            timeout-ms = <50>;
-            key-positions = <31 34>;
+            timeout-ms = <30>;
+            key-positions = <10 19>;
             bindings = <&caps_word>;
         };
+        NumberLock {
+            timeout-ms = <30>;
+            key-positions = <20 29>;
+            bindings = <&tog 1>;
+        };
         stickySym {
-            timeout-ms = <50>;
+            timeout-ms = <30>;
             key-positions = <30 35>;
-            bindings = <&sl 4>;
-        };
-    };
-
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-        number_hold {
-            if-layers = <2>;
-            then-layer = <1>;
-        };
-        number_lock {
-            if-layers = <3>;
-            then-layer = <1>;
+            bindings = <&sl 2>;
         };
     };
 
@@ -147,37 +141,19 @@
 
         Base {
             bindings = <
-                &blt 7 Q    &kp W           &kp E       &kp R       &kp T        &kp Y     &kp U            &kp I     &kp O    &kp P
+                &blt 5 Q    &kp W           &kp E       &kp R       &kp T        &kp Y     &kp U            &kp I     &kp O    &kp P
                 &hm LSHFT A   &hm LGUI S           &hm LALT D       &hm LCTRL F       &kp G        &kp H     &hm RCTRL J            &hm RALT K     &hm RGUI L    &hm RSHFT SQT
                 &blt 2 Z   &kp X     &kp C       &kp V       &kp B        &kp N     &kp M            &kp COMMA &kp DOT  &blt 2 FSLH
-                                        &blt 2 TAB   &blt 9 DEL  &blt 5 ENTER  &lt 6 SPACE &blt 4 BSPC  &blt 2 ESC
-            >;
-        };
-
-        Numbers_base {
-            bindings = <
-                &kp N1       &kp N2       &kp N3       &kp N4       &kp N5       &kp N6       &kp N7       &kp N8       &kp N9       &kp N0
-                &b_tap_hold LSHFT LC(A)      &kp LC(S)      &kp SEMI      &kp LBKT      &kp RBKT      &kp BSLH      &kp COLON      &kp MINUS      &kp EQUAL      &mt RSHFT SEMI
-                &kp Z       &kp LC(X)       &kp LC(C)       &kp LC(V)       &tog 3       &kp PLUS       &kp GRAVE       &kp COMMA       &kp DOT      &kp FSLH
-                                        &trans      &trans      &trans      &trans      &trans      &trans
+                                        &kp TAB   &blt 9 DEL  &blt 3 ENTER  &kp SPACE &blt 2 BSPC  &kp ESC
             >;
         };
 
         Numbers {
             bindings = <
-                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans
-            >;
-        };
-
-        NumberLock {
-            bindings = <
-                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans
+                &kp N1       &kp N2       &kp N3       &kp N4       &kp N5       &kp N6       &kp N7       &kp N8       &kp N9       &kp N0
+                &b_tap_hold LSHFT LC(A)      &kp LC(S)      &kp SEMI      &kp LBKT      &kp RBKT      &kp BSLH      &kp COLON      &kp MINUS      &kp EQUAL      &mt RSHFT SEMI
+                &kp LC(Z)       &kp LC(X)       &kp LC(C)       &kp LC(V)       &tog 1       &kp PLUS       &kp GRAVE       &kp COMMA       &kp DOT      &kp FSLH
+                                        &trans      &trans      &trans      &trans      &trans      &trans
             >;
         };
 
@@ -216,14 +192,7 @@
                 &none &none &soft_off &out OUT_TOG &bt BT_CLR &none
             >;
         };
-       nothing {
-            bindings = <
-                &none &none &none &none &none &none &none &none &none &none
-                &none &none &none &none &none &none &none &none &none &none
-                &none &none &none &none &none &none &none &none &none &none
-                &none &none &none &none &none &none
-            >;
-        };
+
         Mouse {
             bindings = <
                 &none &none &mkp RCLK &mkp MCLK &mkp LCLK &mkp LCLK &mkp MCLK &mkp RCLK &none &none
