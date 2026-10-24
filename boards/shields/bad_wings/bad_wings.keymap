@@ -6,6 +6,8 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
+#include <dt-bindings/zmk/dynamic_macros.h>
+#include <behaviors/dynamic_macro.dtsi>
 
 #define ALPHA       0
 #define SYMBOL 2
@@ -13,7 +15,11 @@
 #define NAVIGATION 3
 #define MOUSE 9
 #define SCROLL 10
-
+# CONFIG_ZMK_BEHAVIOR_DYNAMIC_MACRO_MAX_EVENTS=128
+# CONFIG_ZMK_BEHAVIOR_DYNAMIC_MACRO_NVS_SLOTS=5
+# CONFIG_ZMK_BEHAVIOR_DYNAMIC_MACRO_RAM_SLOTS=5
+# CONFIG_ZMK_BEHAVIOR_DYNAMIC_MACRO_FEEDBACK_VERBOSE=y
+# CONFIG_ZMK_BEHAVIOR_DYNAMIC_MACRO_LOCALE_US=y
 &mt {
     flavor = "tap-preferred";
     tapping_term_ms = <180>;
@@ -141,9 +147,9 @@
 
         Base {
             bindings = <
-                &blt 5 Q    &kp W           &kp E       &kp R       &kp T        &kp Y     &kp U            &kp I     &kp O    &kp P
+                &kp Q    &kp W           &kp E       &kp R       &kp T        &kp Y     &kp U            &kp I     &kp O    &kp P
                 &hm LSHFT A   &hm LGUI S           &hm LALT D       &hm LCTRL F       &kp G        &kp H     &hm RCTRL J            &hm RALT K     &hm RGUI L    &hm RSHFT SQT
-                &blt 1 Z   &kp X     &kp C       &kp V       &kp B        &kp N     &kp M            &kp COMMA &kp DOT  &blt 1 FSLH
+                &blt 1 Z   &kp X     &kp C       &kp V       &blt 5 B        &kp N     &kp M            &kp COMMA &kp DOT  &blt 1 FSLH
                                         &kp TAB   &blt 2 DEL  &blt 3 ENTER  &blt 4 SPACE &blt 2 BSPC  &kp ESC
             >;
         };
@@ -183,12 +189,15 @@
                 &none &kp LCTRL &kp LGUI &none &kp RALT &kp ESC
             >;
         };
+        &dm DM_SLOT_NVS 0  &dm DM_SLOT_NVS 1  &dm DM_SLOT_NVS 2  &dm DM_SLOT_NVS 3
+        &dm DM_SLOT_RAM 0  &dm DM_SLOT_RAM 1  &dm DM_SLOT_RAM 2  &dm DM_SLOT_RAM 3
+        &dm DM_REC 0       &dm DM_STP 0       &dm DM_DEL 0       &dm DM_STATE 0
 
-        Bluetooth {
+        MacroBluetooth {
             bindings = <
-                &none &none &none &none &none &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
-                &none &none &none &none &none &none &none &none &none &none
-                &none &none &none &none &none &none &none &none &none &none
+                &dm DM_SLOT_NVS 0  &dm DM_SLOT_NVS 1  &dm DM_SLOT_NVS 2  &dm DM_SLOT_NVS 3 &dm DM_SLOT_NVS 4 &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
+                &dm DM_SLOT_RAM 0  &dm DM_SLOT_RAM 1  &dm DM_SLOT_RAM 2  &dm DM_SLOT_RAM 3 &dm DM_SLOT_RAM 4 &none &none &none &none &none
+                &dm DM_REC 0       &dm DM_STP 0       &dm DM_DEL 0       &dm DM_STATE 0 &none &none &none &none &none &none
                 &none &none &soft_off &out OUT_TOG &bt BT_CLR &none
             >;
         };

@@ -8,6 +8,8 @@ manifest:
       url-base: https://github.com/zzeneg
     - name: srwi # <-- required for KeyPeek module
       url-base: https://github.com/srwi
+    - name: benjaminciq
+      url-base: https://github.com/BenjaminCIQ
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -18,5 +20,8 @@ manifest:
     - name: zmk-keypeek-layer-notifier # <-- KeyPeek module
       remote: srwi
       revision: master
-  self:
+    - name: zmk-dynamic-macros
+      remote: benjaminciq
+      revision: v0.3 # Match this to your ZMK major.minor
+   self:
     path: config
