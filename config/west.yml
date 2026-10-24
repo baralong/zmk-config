@@ -23,5 +23,5 @@ manifest:
     - name: zmk-dynamic-macros
       remote: benjaminciq
       revision: v0.3 # Match this to your ZMK major.minor
-   self:
+  self:
     path: config
