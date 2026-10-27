@@ -31,17 +31,26 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <300>;
-            quick-tap-ms = <175>;
+            quick-tap-ms = <0>;
             require-prior-idle-ms = <150>;
             bindings = <&kp>, <&kp>;
         };
         hm: home_row_mods {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            flavor = "tap-preferred";
+            flavor = "balanced";
             tapping-term-ms = <200>;
-            quick-tap-ms = <175>;
-            require-prior-idle-ms = <200>;
+            quick-tap-ms = <0>;
+            require-prior-idle-ms = <150>;
+            bindings = <&kp>, <&kp>;
+        };
+        hm_shift: home_row_shift {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <170>;
+            quick-tap-ms = <0>;
+            require-prior-idle-ms = <0>;
             bindings = <&kp>, <&kp>;
         };
         blt: better_layer_tap {
@@ -49,11 +58,17 @@
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
-            quick-tap-ms = <175>;
+            quick-tap-ms = <0>;
             require-prior-idle-ms = <200>;
             bindings = <&mo>, <&kp>;
         };
-    };
+        caps_word {
+            compatible = "zmk,behavior-caps-word";
+            #binding-cells = <0>;
+            continue-list = <UNDERSCORE MINUS BACKSPACE DELETE>;
+            apply-to-combos;
+        };
+            };
 
     combos {
         compatible = "zmk,combos";
@@ -143,7 +158,7 @@
         Base {
             bindings = <
                 &kp Q    &kp W           &kp E       &kp R       &kp T        &kp Y     &kp U            &kp I     &kp O    &kp P
-                &hm LSHFT A   &hm LGUI S           &hm LALT D       &hm LCTRL F       &kp G        &kp H     &hm RCTRL J            &hm RALT K     &hm RGUI L    &hm RSHFT SQT
+                &hm_shift LSHFT A   &hm LGUI S           &hm LALT D       &hm LCTRL F       &kp G        &kp H     &hm RCTRL J            &hm RALT K     &hm RGUI L    &hm_shift RSHFT SQT
                 &blt 1 Z   &kp X     &kp C       &kp V       &blt 5 B        &kp N     &kp M            &kp COMMA &kp DOT  &blt 1 FSLH
                                         &kp TAB   &blt 2 DEL  &blt 3 ENTER  &blt 4 SPACE &blt 2 BSPC  &kp ESC
             >;
@@ -152,7 +167,7 @@
         Numbers {
             bindings = <
                 &kp N1       &kp N2       &kp N3       &kp N4       &kp N5       &kp N6       &kp N7       &kp N8       &kp N9       &kp N0
-                &b_tap_hold LSHFT LC(A)      &kp LC(S)      &kp SEMI      &kp LBKT      &kp RBKT      &kp BSLH      &kp COLON      &kp MINUS      &kp EQUAL      &mt RSHFT SEMI
+                &hm_shift LSHFT LC(A)      &kp LC(S)      &kp SEMI      &kp LBKT      &kp RBKT      &kp BSLH      &kp COLON      &kp MINUS      &kp EQUAL      &hm_shift RSHFT SEMI
                 &kp LC(Z)       &kp LC(X)       &kp LC(C)       &kp LC(V)       &tog 1       &kp PLUS       &kp GRAVE       &kp COMMA       &kp DOT      &kp FSLH
                                         &trans      &trans      &trans      &trans      &trans      &trans
             >;
@@ -161,7 +176,7 @@
         Symbols {
             bindings = <
                 &kp EXCL    &kp AT      &kp HASH    &kp DLLR    &kp PRCNT   &kp CARET   &kp AMPS    &kp STAR    &kp LPAR    &kp RPAR
-                &mt LSHFT GRAVE   &kp TILDE   &kp MINUS   &kp PLUS   &kp LBKT       &kp RBKT        &kp BSLH        &kp SEMI        &kp COLON        &mt RSHFT BSLH
+                &hm_shift LSHFT GRAVE   &kp TILDE   &kp MINUS   &kp PLUS   &kp LBKT       &kp RBKT        &kp BSLH        &kp SEMI        &kp COLON        &hm_shift RSHFT BSLH
                 &none       &none       &none    &none   &kp LBRC       &kp RBRC       &kp EQUAL       &kp COMMA   &kp DOT     &none
                                         &trans      &trans      &trans      &none      &trans      &trans
             >;
@@ -179,7 +194,7 @@
         Function {
             bindings = <
                 &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6 &kp F7 &kp F8 &kp F9 &kp F10
-                &hm LSHFT F11 &kp F12 &none &kp C_BRI_DN &kp C_BRI_UP &none &kp RCTRL &kp RALT &kp RGUI &kp RSHFT
+                &hm_shift LSHFT F11 &kp F12 &none &kp C_BRI_DN &kp C_BRI_UP &none &kp RCTRL &kp RALT &kp RGUI &kp RSHFT
                 &none &kp C_MUTE &none &kp C_VOL_DN &kp C_VOL_UP &none &none &none &none &studio_unlock
                 &none &kp LCTRL &kp LGUI &none &kp RALT &kp ESC
             >;
