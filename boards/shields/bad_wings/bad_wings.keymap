@@ -70,7 +70,6 @@
         };
     };
 
-    {
     macros {
         // Toggles Layer 1 AND sends whatever keycode you pass to it
         tog1_and: tog1_and {
