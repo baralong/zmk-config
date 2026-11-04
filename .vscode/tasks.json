@@ -4,7 +4,7 @@
     {
       "label": "act: Local CI Build",
       "type": "shell",
-      "command": "act --job build --reuse --artifact-server-path /tmp/act-artifacts 2>&1 | tee /tmp/act.log",
+      "command": "for c in $(docker ps -q --filter name=act-build-Reusable); do docker exec $c rm -rf /tmp/zmk-config; done; act --job build --reuse --artifact-server-path /tmp/act-artifacts 2>&1 | tee /tmp/act.log",
       "group": {
         "kind": "build",
         "isDefault": true
