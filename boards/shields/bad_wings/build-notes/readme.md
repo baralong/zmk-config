@@ -76,6 +76,8 @@ exactly what I did, but it's what I'd do if I did it again.
   then screws from the bottom   
 *  Done.
 
+<img width="3851" height="1558" alt="Finished Build" src="./Finished Build.jpg" />
+
 ## Things I'd do differently
 * I'd probably use standoffs between the PCB and top, that would allow for
   thinner rubber feet
